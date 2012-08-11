@@ -16,39 +16,39 @@ There are two ways to use GCM.
 
 Sending many notifications:
 
-  notifications = [
-    {
-      :registration_id => "...", 
-      :data => {
-        :message => "Some message",
-        :score => 10
+    notifications = [
+      {
+        :registration_id => "...", 
+        :data => {
+          :message => "Some message",
+          :score => 10
+        },
+        :collapse_key => "foobar" #optional
       },
-      :collapse_key => "foobar" #optional
-    },
-    ....
-  ]
+      ....
+    ]
   
-  GCM.auth_key = '1234567890qwertyuiiop'
-  GCM.send_notifications(notifications)
+    GCM.auth_key = '1234567890qwertyuiiop'
+    GCM.send_notifications(notifications)
   
   or with authentication key...
 
-  GCM.send_notifications(notifications, '1234567890qwertyuiiop')
+    GCM.send_notifications(notifications, '1234567890qwertyuiiop')
 
 ...or one at a time:
 
-  GCM = GCM.new('1234567890qwertyuiiop')
-
-  notification = {
-    :registration_id => "...", 
-    :data => {
-      :some_message => "Some message",
-      :another_message => 10
-    },
-    :collapse_key => "foobar" #optional
-  }
-
-  GCM.send_notification(notification)
+    GCM = GCM.new('1234567890qwertyuiiop')
+  
+    notification = {
+      :registration_id => "...", 
+      :data => {
+        :some_message => "Some message",
+        :another_message => 10
+      },
+      :collapse_key => "foobar" #optional
+    }
+  
+    GCM.send_notification(notification)
 
 If you wnat to send multicast notification, use the plural of the registration_id and an array.
 That is, registration_ids  => ['reg_idq', 'reg_id2',....].
