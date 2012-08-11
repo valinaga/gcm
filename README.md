@@ -41,18 +41,26 @@ Sending many notifications:
   GCM = GCM.new('1234567890qwertyuiiop')
 
   notification = {
-    :registration_ids => ["..."], 
+  
+    :registration_id => "...", 
+ 
     :data => {
+
       :some_message => "Some payload",
+
       :another_message => 10
+
     },
+
     :collapse_key => "foobar" #optional
+
   }
 
   GCM.send_notification(notification)
 
-Note the registration_ids as plural! And it takes an array even if it's only one registration_id.
-You can use the same for multicast.  => ['reg_idq', 'reg_id2',....]
+If you wnat to send multicast notification, use the plural of the registration_id and an array.
+That is, registration_ids  => ['reg_idq', 'reg_id2',....].
+Good luck!
 
 ##Copyrights
 

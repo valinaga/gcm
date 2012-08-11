@@ -16,8 +16,6 @@ class GCM
     def send_notifications(notifications = [], auth_key = @auth_key)
       gcm = GCM.new(auth_key)
       notifications.collect do |notification|
-        registration_id = notifiction.delete(:registration_id)
-        notification.merge!({ :registration_ids => [ registration_id ] }) unless registration_id.nil?
         gcm.send_notification(notification)
       end
     end
@@ -38,6 +36,9 @@ class GCM
   # }
   def send_notification(options)
     options[:collapse_key] ||= 'foo'
+    registration_id = options.delete(:registration_id)
+    options.merge!({ :registration_ids => [ registration_id ] }) unless registration_id.nil?
+    
     params = {
       :body    => options.to_json,
       :headers => {
