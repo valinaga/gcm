@@ -22,23 +22,26 @@ Sending many notifications:
     {
       :registration_id => "...", 
       :data => {
-        :some_message => "Some payload"
-        :another_message => 10
+        :message => "Some payload"
+        :score => 10
       },
       :collapse_key => "foobar" #optional
     }
   ]
   
-  GCM.authenticate!("your@googleuser.com", "somepassword", "YourCo-App-1.0.0")
+  GCM.auth_key = '1234567890qwertyuiiop'
   GCM.send_notifications(notifications)
+  
+  or with authentication key...
+
+  GCM.send_notifications(notifications, '1234567890qwertyuiiop')
 
 ...or one at a time:
 
-  GCM.authenticate!("your@googleuser.com", "somepassword", "YourCo-App-1.0.0")
-  GCM = GCM.new
+  GCM = GCM.new('1234567890qwertyuiiop')
 
   notification = {
-    :registration_id => "...", 
+    :registration_ids => ["..."], 
     :data => {
       :some_message => "Some payload",
       :another_message => 10
@@ -48,9 +51,8 @@ Sending many notifications:
 
   GCM.send_notification(notification)
 
-Note that calling *authenticate!* will authenticate all new instances of GCM. You can override this by passing in your own auth_token:
-
-  GCM = GCM.new(auth_token)
+Note the registration_ids as plural! And it takes an array even if it's only one registration_id.
+You can use the same for multicast.  => ['reg_idq', 'reg_id2',....]
 
 ##Copyrights
 
