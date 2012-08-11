@@ -51,7 +51,9 @@ Sending many notifications:
     GCM.send_notification(notification)
 
 If you wnat to send multicast notification, use the plural of the registration_id and an array.
-That is, registration_ids  => ['reg_idq', 'reg_id2',....].
+
+    registration_ids  => ['reg_idq', 'reg_id2',....]
+
 Good luck!
 
 ##Copyrights
