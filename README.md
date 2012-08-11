@@ -28,16 +28,16 @@ Sending many notifications:
       ....
     ]
   
-    GCM.auth_key = 'my-authentication-key-from gcm'
+    GCM.auth_key = 'my-authentication-key-from-gcm'
     GCM.send_notifications(notifications)
   
   or with authentication key...
 
-    GCM.send_notifications(notifications, 'my-authentication-key-from gcm')
+    GCM.send_notifications(notifications, 'my-authentication-key-from-gcm')
 
 ...or one at a time:
 
-    gcm = GCM.new('my-authentication-key-from gcm')
+    gcm = GCM.new('my-authentication-key-from-gcm')
   
     notification = {
       :registration_id => "...", 
@@ -50,7 +50,7 @@ Sending many notifications:
   
     gcm.send_notification(notification)
 
-If you wnat to send multicast notification, use the plural of the registration_id and an array.
+If you want to send multicast notification, use instead the plural of the registration_id and an array.
 
     registration_ids  => ['reg_idq', 'reg_id2',....]
 
