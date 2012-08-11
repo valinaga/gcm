@@ -28,16 +28,16 @@ Sending many notifications:
       ....
     ]
   
-    GCM.auth_key = '1234567890qwertyuiiop'
+    GCM.auth_key = 'my-authentication-key-from gcm'
     GCM.send_notifications(notifications)
   
   or with authentication key...
 
-    GCM.send_notifications(notifications, '1234567890qwertyuiiop')
+    GCM.send_notifications(notifications, 'my-authentication-key-from gcm')
 
 ...or one at a time:
 
-    GCM = GCM.new('1234567890qwertyuiiop')
+    gcm = GCM.new('my-authentication-key-from gcm')
   
     notification = {
       :registration_id => "...", 
@@ -48,12 +48,25 @@ Sending many notifications:
       :collapse_key => "foobar" #optional
     }
   
-    GCM.send_notification(notification)
+    gcm.send_notification(notification)
 
 If you wnat to send multicast notification, use the plural of the registration_id and an array.
 
     registration_ids  => ['reg_idq', 'reg_id2',....]
 
+You can get the statistics of what you sent by inspecting the:
+    :successes, :failurese, :canonicals 
+at the class level if many notifications are sent, ex:
+        
+    GCM.successes  or GCM.failures
+    
+or at instance level if you are sending only one or multicast, ex:
+        
+    gcm = GCM.new('my-authentication-key-from gcm')
+    ......
+    gcm.send_notification(notification)
+    puts gcm.successes, gcm.failures, gcm.canonicals
+     
 Good luck!
 
 ##Copyrights
