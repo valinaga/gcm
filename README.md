@@ -12,8 +12,6 @@ An Android device running 2.2 or newer, its registration token, and a google acc
 
 ##Usage
 
-*Important*: Version 0.2.0+ decouples auth from sending so the API changed. Please update your code.
-
 There are two ways to use GCM.
 
 Sending many notifications:
@@ -22,11 +20,12 @@ Sending many notifications:
     {
       :registration_id => "...", 
       :data => {
-        :message => "Some payload"
+        :message => "Some message",
         :score => 10
       },
       :collapse_key => "foobar" #optional
-    }
+    },
+    ....
   ]
   
   GCM.auth_key = '1234567890qwertyuiiop'
@@ -41,19 +40,12 @@ Sending many notifications:
   GCM = GCM.new('1234567890qwertyuiiop')
 
   notification = {
-  
     :registration_id => "...", 
- 
     :data => {
-
-      :some_message => "Some payload",
-
+      :some_message => "Some message",
       :another_message => 10
-
     },
-
     :collapse_key => "foobar" #optional
-
   }
 
   GCM.send_notification(notification)
